@@ -5,25 +5,13 @@ const Register = lazy(() => import("../pages/auth/Register"));
 
 const AuthRouter = () => {
   return (
-    <Routes>
-      <Route
-        path="login"
-        element={
-          <Suspense fallback={<div>Loading...</div>}>
-            <Login />
-          </Suspense>
-        }
-      />
-      <Route
-        path="register"
-        element={
-          <Suspense fallback={<div>Loading...</div>}>
-            <Register />
-          </Suspense>
-        }
-      />
-      <Route path="*" element={<Navigate to="/auth/login" />} />
-    </Routes>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routes>
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+        <Route path="*" element={<Navigate to="/auth/login" />} />
+      </Routes>
+    </Suspense>
   );
 };
 export default AuthRouter;

@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 const AuthRouter = lazy(() => import("./AuthRouter"));
 const Journal = lazy(() => import("../pages/journal/Journal"));
@@ -7,24 +7,13 @@ const Journal = lazy(() => import("../pages/journal/Journal"));
 export const AppRouter = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route
-          path="/auth/*"
-          element={
-            <Suspense fallback={<div>Loading...</div>}>
-              <AuthRouter />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/"
-          element={
-            <Suspense fallback={<div>Loading...</div>}>
-              <Journal />
-            </Suspense>
-          }
-        />
-      </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/auth/*" element={<AuthRouter />} />
+          <Route path="/" element={<Journal />} />
+          <Route path="*" element={<Navigate to="/auth/login" />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 };
