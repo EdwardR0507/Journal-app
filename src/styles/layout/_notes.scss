@@ -1,0 +1,50 @@
+.notes__main-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.notes__appbar {
+  align-items: center;
+  background-color: $primary-color;
+  color: $white;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.625rem 1.25rem 0.625rem 1.25rem;
+}
+
+.notes__content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.25rem;
+}
+
+.notes__title-input,
+.notes__textarea {
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.notes__title-input {
+  color: $dark-gray;
+  font-size: 1.5625rem;
+  font-weight: 700;
+  margin-bottom: 0.625rem;
+}
+
+.notes__textarea {
+  border: none;
+  color: $dark-gray;
+  font-size: 1.25rem;
+  flex: 1 1 auto;
+  resize: none;
+}
+
+.notes__image img {
+  box-shadow: 0.3125rem 0.3125rem $dark-gray;
+  height: 9.375rem;
+}

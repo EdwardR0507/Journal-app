@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Loader from "../components/Loader";
 
 const AuthRouter = lazy(() => import("./AuthRouter"));
-const Journal = lazy(() => import("../pages/journal/Journal"));
+const Journal = lazy(() => import("../pages/Journal"));
 
 export const AppRouter = () => {
   return (

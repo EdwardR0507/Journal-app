@@ -1,8 +1,16 @@
 @import "./base/settings";
 @import "./base/base";
 
+// Layouts
+@import "./layout/auth";
+@import "./layout/notes";
+@import "./layout/nothing";
+@import "./layout/sidebar";
+
 // Components
-@import "./components/auth";
 @import "./components/buttons";
 @import "./components/links";
 @import "./components/loader";
+
+// Pages
+@import "./pages/journal";
