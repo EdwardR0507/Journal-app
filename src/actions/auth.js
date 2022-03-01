@@ -7,6 +7,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { app, googleAuthProvider } from "../firebase/firebaseConfig";
+import Swal from "sweetalert2";
 import { types } from "../types/types";
 import { startLoading, stopLoading } from "./ui";
 
@@ -25,7 +26,11 @@ export const startRegisterEmailPassword = (email, password, name) => {
       });
       dispatch(login(user.uid, user.displayName));
     } catch (error) {
-      console.log(error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: error.message,
+      });
     }
   };
 };
@@ -39,8 +44,12 @@ export const startLoginEmailPassword = (email, password) => {
       dispatch(login(user.uid, user.displayName));
       dispatch(stopLoading());
     } catch (error) {
-      console.log(error);
       dispatch(stopLoading());
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: error.message,
+      });
     }
   };
 };
