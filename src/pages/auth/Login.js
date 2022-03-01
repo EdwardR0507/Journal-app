@@ -8,7 +8,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const { loading, msgError } = useSelector((state) => state.ui);
 
-  const [formValues, handleInputChange, reset] = useForm({
+  const [formValues, handleInputChange] = useForm({
     email: "",
     password: "",
   });

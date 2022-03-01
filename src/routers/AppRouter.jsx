@@ -27,8 +27,6 @@ export const AppRouter = () => {
     });
   }, [dispatch, setIsAuth]);
 
-  console.log("isAuth in router:", isAuth);
-
   return (
     <BrowserRouter>
       <Suspense fallback={<Loader />}>
