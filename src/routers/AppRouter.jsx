@@ -5,6 +5,7 @@ import { app } from "../firebase/firebaseConfig";
 import Loader from "../components/Loader";
 import { useDispatch } from "react-redux";
 import { login } from "../actions/auth";
+import { loadNotes } from "../actions/notes";
 
 const AuthRouter = lazy(() => import("./AuthRouter"));
 const Journal = lazy(() => import("../pages/Journal"));
@@ -21,6 +22,7 @@ export const AppRouter = () => {
       if (user?.uid) {
         dispatch(login(user.uid, user.displayName));
         setIsAuth(true);
+        dispatch(loadNotes(user.uid));
       } else {
         setIsAuth(false);
       }

@@ -1,24 +1,44 @@
-import React from "react";
+import dayjs from "dayjs";
+import { useDispatch } from "react-redux";
+import { activeNote } from "../../actions/notes";
 
-const JournalEntry = () => {
+const JournalEntry = ({ id, date, title, body, url }) => {
+  const dispatch = useDispatch();
+  const noteDate = dayjs(date);
+
+  const handleEntryClick = () => {
+    dispatch(
+      activeNote(id, {
+        date,
+        title,
+        body,
+        url,
+      })
+    );
+  };
   return (
-    <div className="journal__entry pointer animate__animated animate__fadeIn animate__faster">
-      <div
-        className="journal__entry-picture"
-        style={{
-          backgroundSize: "cover",
-          backgroundImage: `url(https://s3.us-east-1.amazonaws.com/maxonsites/images/maxon/_1200x630_crop_center-center_82_none/Universe_5_Hero.jpg?mtime=1630681085)`,
-        }}
-      ></div>
+    <div
+      className="journal__entry pointer animate__animated animate__fadeIn animate__faster"
+      onClick={handleEntryClick}
+    >
+      {url && (
+        <div
+          className="journal__entry-picture"
+          style={{
+            backgroundSize: "cover",
+            backgroundImage: `url(${url})`,
+          }}
+        ></div>
+      )}
 
       <div className="journal__entry-body">
-        <p className="journal__entry-title">Title</p>
-        <p className="journal__entry-content">Description</p>
+        <p className="journal__entry-title">{title}</p>
+        <p className="journal__entry-content">{body}</p>
       </div>
 
       <div className="journal__entry-date-box">
-        <span> Friday </span>
-        <h4> 25 </h4>
+        <span> {noteDate.format("dddd")} </span>
+        <h4> {noteDate.format("Do")} </h4>
       </div>
     </div>
   );
