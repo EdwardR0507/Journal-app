@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { startLogout } from "../actions/auth";
-import { addNewNote, clearNotes } from "../actions/notes";
+import { addNewNote } from "../actions/notes";
 import JournalEntries from "../components/Journal/JournalEntries";
 
 const Sidebar = () => {
