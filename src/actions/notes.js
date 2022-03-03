@@ -8,6 +8,7 @@ import {
 } from "firebase/firestore";
 import { types } from "../types/types";
 import { db } from "../firebase/firebaseConfig";
+import { fileUpload } from "../helpers/fileUpload";
 
 // Add a new note
 export const addNewNote = () => {
@@ -51,7 +52,8 @@ export const addNote = (id, note) => ({
 // Load all notes
 export const loadNotes = (uid) => {
   return async (dispatch) => {
-    const notesSnap = await getDocs(collection(db, `users/${uid}/notes`));
+    const readRef = collection(db, `users/${uid}/notes`);
+    const notesSnap = await getDocs(readRef);
     const notes = [];
     notesSnap.forEach((notesChild) => {
       notes.push({
@@ -103,3 +105,20 @@ export const updateNote = (id, note) => ({
     },
   },
 });
+
+// Upload image
+export const uploadImage = (file, active) => {
+  return async (dispatch) => {
+    Swal.fire({
+      title: "Uploading...",
+      text: "Please wait",
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+    const fileUrl = await fileUpload(file);
+    dispatch(saveNote({ ...active, url: fileUrl }));
+    Swal.close();
+  };
+};

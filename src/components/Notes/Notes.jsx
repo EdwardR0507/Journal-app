@@ -46,12 +46,7 @@ const Notes = () => {
 
         {note.url && (
           <div className="notes__image">
-            <img
-              src={
-                "https://s3.us-east-1.amazonaws.com/maxonsites/images/maxon/_1200x630_crop_center-center_82_none/Universe_5_Hero.jpg?mtime=1630681085"
-              }
-              alt="imagen"
-            />
+            <img src={note.url} alt="imagen" />
           </div>
         )}
       </div>
