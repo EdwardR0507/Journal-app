@@ -10,6 +10,7 @@ import { app, googleAuthProvider } from "../firebase/firebaseConfig";
 import Swal from "sweetalert2";
 import { types } from "../types/types";
 import { startLoading, stopLoading } from "./ui";
+import { clearNotes } from "./notes";
 
 const auth = getAuth(app);
 // Register a new user with email and password and also the name
@@ -80,6 +81,7 @@ export const startLogout = () => {
     try {
       await signOut(auth);
       dispatch(logout());
+      dispatch(clearNotes());
     } catch (error) {
       console.log(error);
     }

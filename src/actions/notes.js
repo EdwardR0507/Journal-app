@@ -3,6 +3,7 @@ import {
   collection,
   doc,
   addDoc,
+  deleteDoc,
   getDocs,
   updateDoc,
 } from "firebase/firestore";
@@ -122,3 +123,32 @@ export const uploadImage = (file, active) => {
     Swal.close();
   };
 };
+
+// Delete note
+export const deleteNote = (id) => {
+  return async (dispatch, getState) => {
+    const { uid } = getState().auth;
+    try {
+      // Ref to the document
+      const deleteRef = doc(db, `users/${uid}/notes/${id}`);
+      await deleteDoc(deleteRef);
+    } catch (error) {
+      console.error("Error deleting document: ", error);
+    }
+    dispatch(removeNote(id));
+    Swal.fire({
+      icon: "success",
+      title: "Note deleted",
+    });
+  };
+};
+
+export const removeNote = (id) => ({
+  type: types.deleteNotes,
+  payload: id,
+});
+
+// Clear notes after logout
+export const clearNotes = () => ({
+  type: types.logoutCleaning,
+});
