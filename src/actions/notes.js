@@ -25,7 +25,6 @@ export const addNewNote = () => {
         collection(db, `users/${uid}/notes`),
         newNote
       );
-      console.log("Document written with ID: ", docRef.id);
       dispatch(activeNote(docRef.id, newNote));
       dispatch(addNote(docRef.id, newNote));
     } catch (error) {
